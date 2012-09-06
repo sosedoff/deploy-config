@@ -1,0 +1,18 @@
+app:
+  name: app
+  type: wordpress
+  mode: theme
+  git: git@hostname.com:app.git
+
+targets:
+  staging:
+    host: staging.domain.com
+    user: user
+    password: password
+    deploy_to: /home/app/name
+
+  production:
+    host: production.domain.com
+    user: user
+    password: password
+    deploy_to: /home/app/name
