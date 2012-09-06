@@ -2,6 +2,9 @@ require 'rubygems'
 require 'yaml'
 require 'hashr'
 
+require 'deploy-manifest/core_ext/array'
+require 'deploy-manifest/core_ext/hash'
+
 require 'deploy-manifest/version'
 require 'deploy-manifest/errors'
 require 'deploy-manifest/helpers'

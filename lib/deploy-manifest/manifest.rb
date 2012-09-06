@@ -1,12 +1,12 @@
 module DeployManifest
   class Manifest
-    PRIMARY_FIELDS = %w(app targets hooks setup)
-    TARGET_FIELDS  = %w(host port user password deploy_to)
+    PRIMARY_FIELDS = [:app, :targets, :hooks, :setup]
+    TARGET_FIELDS  = [:host, :user, :password, :deploy_to]
     HOOKS_FIELDS   = [
-      'before_deploy',
-      'before_code_update',
-      'after_code_update',
-      'after_deploy'
+      :before_deploy,
+      :before_code_update,
+      :after_code_update,
+      :after_deploy
     ]
 
     include DeployManifest::Parser
@@ -17,6 +17,7 @@ module DeployManifest
     attr_reader :app_type
     attr_reader :git
     attr_reader :deploy_mode
+    attr_reader :targets
 
     attr_reader :data
 
@@ -24,6 +25,7 @@ module DeployManifest
     # @param attrs [Hash] attributes hash
     def initialize(attrs={})
       @data = Hashr.new(attrs)
+      @targets = {}
     end
 
     # Validate manifest
@@ -34,6 +36,23 @@ module DeployManifest
 
       if !data.app?
         raise DeployManifest::Error, "Manifest does not have app definition"
+      end
+
+      if data.targets?
+        data.targets.each_pair do |k,v|
+          if !v.kind_of?(Hash)
+            raise DeployManifest::Error, "Target #{k} is invalid"
+          end
+          
+          if !v.keys.include_all?(TARGET_FIELDS)
+            raise DeployManifest::Error, "Target #{k} is missing attributes"
+          end
+
+          # Keep only available keys
+          v.delete_if { |k,v| !TARGET_FIELDS.include?(k) }
+
+          @targets[k] = v
+        end
       end
     end
   end
