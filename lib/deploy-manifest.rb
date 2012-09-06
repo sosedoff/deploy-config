@@ -4,12 +4,12 @@ require 'hashr'
 
 require 'deploy-manifest/core_ext/array'
 require 'deploy-manifest/core_ext/hash'
-
 require 'deploy-manifest/version'
 require 'deploy-manifest/errors'
 require 'deploy-manifest/helpers'
 require 'deploy-manifest/validations'
 require 'deploy-manifest/parser'
+require 'deploy-manifest/target'
 require 'deploy-manifest/manifest'
 
 module DeployManifest

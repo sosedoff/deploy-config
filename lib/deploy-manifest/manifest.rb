@@ -24,34 +24,22 @@ module DeployManifest
     # Initialize a new manifest instance
     # @param attrs [Hash] attributes hash
     def initialize(attrs={})
-      @data = Hashr.new(attrs)
-      @targets = {}
+      @data    = Hashr.new(attrs)
+      @targets = Hashr.new
     end
 
     # Validate manifest
     def validate
-      if data.empty?
-        raise DeployManifest::Error, "Manifest is empty"
-      end
-
-      if !data.app?
-        raise DeployManifest::Error, "Manifest does not have app definition"
-      end
+      raise DeployManifest::Error, "Manifest is empty" if data.empty?
+      raise DeployManifest::Error, "Manifest does not have app definition" if !data.app?
 
       if data.targets?
         data.targets.each_pair do |k,v|
-          if !v.kind_of?(Hash)
-            raise DeployManifest::Error, "Target #{k} is invalid"
-          end
-          
-          if !v.keys.include_all?(TARGET_FIELDS)
-            raise DeployManifest::Error, "Target #{k} is missing attributes"
-          end
+          raise DeployManifest::Error, "Target #{k} is invalid" if !v.kind_of?(Hash)
+          raise DeployManifest::Error, "Target #{k} is missing attributes" if !v.keys.include_all?(TARGET_FIELDS)
 
-          # Keep only available keys
           v.delete_if { |k,v| !TARGET_FIELDS.include?(k) }
-
-          @targets[k] = v
+          @targets[k] = DeployManifest::Target.new(k.to_s, v)
         end
       end
     end
