@@ -16,7 +16,7 @@ module DeployManifest
     # @return [Manifest] manifest instance
     def load_file(path)
       full_path = File.expand_path(path)
-      ext  = File.extname(full_path, File.basename(full_path)).downcase
+      ext = File.extname(path).downcase.delete('.')
 
       if !File.exists?(full_path)
         raise ArgumentError, "File does not exist"
