@@ -1,7 +1,7 @@
 app:
   name: app
   type: wordpress
-  mode: theme
+  mode: install_theme
   git: git@hostname.com:app.git
 
 targets:
@@ -16,3 +16,20 @@ targets:
     user: user
     password: password
     deploy_to: /home/app/name
+
+setup:
+  - cmd1
+  - cmd2
+  - cmd3
+
+hooks:
+  before_deploy:
+    - cmd1
+    - cmd2
+  before_code_update:
+    - cmd
+  after_code_update:
+    - cmd
+  after_deploy:
+    - cmd1
+    - cmd2
