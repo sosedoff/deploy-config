@@ -26,6 +26,7 @@ module DeployManifest
     def initialize(attrs={})
       @data    = Hashr.new(attrs)
       @targets = Hashr.new
+      @hooks   = Hashr.new
     end
 
     # Validate manifest
@@ -40,6 +41,12 @@ module DeployManifest
 
           v.delete_if { |k,v| !TARGET_FIELDS.include?(k) }
           @targets[k] = DeployManifest::Target.new(k.to_s, v)
+        end
+      end
+
+      if data.hooks?
+        if !data.hooks.kind_of?(Hash)
+          raise DeployManifest::Error, "Invalid hooks section"
         end
       end
     end
