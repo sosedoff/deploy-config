@@ -13,7 +13,19 @@ module DeployManifest
       raise DeployManifest::Error, "App is not defined"   if data.nil?
       raise DeployManifest::Error, "App name required"    if data.name.nil?
       raise DeployManifest::Error, "App type required"    if data.type.nil?
-      raise DeployManifest::Error, "Code source required" if data.git.nil?
+      raise DeployManifest::Error, "App source required"  if data.git.nil?
+
+      if !valid_app_name?(data.name)
+        raise DeployManifest::Error, "App name is not valid"
+      end
+
+      if !valid_app_type?(data.type)
+        raise DeployManifest::Error, "App type is invalid"
+      end
+
+      if !valid_git_url?(data.git)
+        raise DeployManifest::Error, "App source is invalid"
+      end
 
       @app      = data.name
       @app_type = data.app_type

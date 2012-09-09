@@ -9,21 +9,21 @@ module DeployManifest
     # Validate application name
     # @param str [String] application name
     # @return [Boolean] validation result
-    def validate_app_name(str)
+    def valid_app_name?(str)
       str =~ REGEX_APP ? true : false
     end
 
     # Check if git url is correct
     # @param str [String] git repository url
     # @return [Boolean] validation result
-    def validate_git_url(str)
+    def valid_git_url?(str)
       str =~ REGEX_GIT_SSH ? true : false
     end
 
     # Validate application type
     # @param str [String] application type
     # @return [Boolean] validation result
-    def validate_app_type(str)
+    def valid_app_type?(str)
       %w(static rack rails3 sinatra wordpress django cakephp).include?(str)
     end
   end

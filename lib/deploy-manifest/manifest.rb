@@ -8,6 +8,7 @@ module DeployManifest
     attr_reader :app_type
     attr_reader :git
     attr_reader :targets
+    attr_reader :config
     attr_reader :original_data
 
     # Initialize a new manifest instance
@@ -16,6 +17,7 @@ module DeployManifest
       @original_data = Hashr.new(attrs)
       @targets       = Hashr.new
       @hooks         = Hashr.new
+      @config        = Hashr.new
     end
 
     # Parse manifest data
