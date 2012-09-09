@@ -10,26 +10,27 @@ module DeployManifest
     ]
 
     def parse_application(data)
-      raise DeployManifest::Error, "App is not defined"   if data.nil?
-      raise DeployManifest::Error, "App name required"    if data.name.nil?
-      raise DeployManifest::Error, "App type required"    if data.type.nil?
-      raise DeployManifest::Error, "App source required"  if data.git.nil?
+      app = Hashr.new(data)
 
-      if !valid_app_name?(data.name)
+      raise DeployManifest::Error, "App name required"   if !app.name?
+      raise DeployManifest::Error, "App type required"   if !app.type?
+      raise DeployManifest::Error, "App source required" if !app.git?
+
+      if !valid_app_name?(app.name)
         raise DeployManifest::Error, "App name is not valid"
       end
 
-      if !valid_app_type?(data.type)
+      if !valid_app_type?(app.type)
         raise DeployManifest::Error, "App type is invalid"
       end
 
-      if !valid_git_url?(data.git)
+      if !valid_git_url?(app.git)
         raise DeployManifest::Error, "App source is invalid"
       end
 
-      @app      = data.name
-      @app_type = data.app_type
-      @git      = data.git
+      @app      = app.name
+      @app_type = app.app_type
+      @git      = app.git
     end
 
     def parse_targets(data)
