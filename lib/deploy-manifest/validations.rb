@@ -3,7 +3,7 @@ module DeployManifest
     extend self
 
     REGEX_APP      = /\A[a-z\d\-\_]{1,64}\z/i
-    REGEX_GIT_SSH  = /\A[a-z\d\-]@[a-z\d\-\.]:[a-z\d\-\_\.].git\z/i
+    REGEX_GIT_SSH  = /\A[a-z\d\-]{1,}@[a-z\d\-\.]{1,}:[a-z\d\-\_\.\/]{1,}.git\z/i
     REGEX_GIT_HTTP = nil # TODO
 
     # Validate application name
@@ -24,7 +24,7 @@ module DeployManifest
     # @param str [String] application type
     # @return [Boolean] validation result
     def validate_app_type(str)
-      %w(rack rails3 sinatra wordpress cakephp).include?(str)
+      %w(static rack rails3 sinatra wordpress django cakephp).include?(str)
     end
   end
 end

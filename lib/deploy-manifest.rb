@@ -45,6 +45,7 @@ module DeployManifest
     # @return [Manifest] manifest instance
     def from_json(data)
       # TODO: Impement JSON loader
+      raise RuntimeErrorm "JSON loader is not implemented"
     end
 
     # Parse manifest from xml data
@@ -52,6 +53,7 @@ module DeployManifest
     # @return [Manifest] manifest instance
     def from_xml(data)
       # TODO: Implement XML loader
+      raise RuntimeErrorm, "XML loader is not implemented"
     end
   end
 end

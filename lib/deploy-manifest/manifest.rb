@@ -7,25 +7,22 @@ module DeployManifest
     attr_reader :app
     attr_reader :app_type
     attr_reader :git
-    attr_reader :deploy_mode
     attr_reader :targets
+    attr_reader :original_data
 
     # Initialize a new manifest instance
     # @param attrs [Hash] attributes hash
     def initialize(attrs={})
-      data     = Hashr.new(attrs)
-      @targets = Hashr.new
-      @hooks   = Hashr.new
-
-      parse_application(data.app)
-      parse_targets(data.targets)
-      parse_hooks(data.hooks)
+      @original_data = Hashr.new(attrs)
+      @targets       = Hashr.new
+      @hooks         = Hashr.new
     end
 
-    # Validate manifest
-    def validate
-      raise DeployManifest::Error, "Manifest is empty" if data.empty?
-      raise DeployManifest::Error, "Manifest does not have app definition" if !data.app?
+    # Parse manifest data
+    def parse!
+      parse_application(original_data.app)
+      parse_targets(original_data.targets)
+      parse_hooks(original_data.hooks)
     end
   end
 end
