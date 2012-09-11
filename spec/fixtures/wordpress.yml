@@ -16,6 +16,10 @@ targets:
     password: password
     deploy_to: /home/app/name
 
+environment:
+  global:
+    ENV_NAME: "env value"
+
 configuration:
   deploy: install_theme
   theme: theme_name
