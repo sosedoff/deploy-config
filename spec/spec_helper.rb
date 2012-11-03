@@ -12,5 +12,5 @@ def fixture(file)
 end
 
 def make_manifest(data)
-  DeployManifest::Manifest.new(data)
+  DeployConfig::Manifest.new(data)
 end

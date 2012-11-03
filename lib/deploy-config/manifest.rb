@@ -1,8 +1,8 @@
 module DeployConfig
   class Manifest
-    include DeployManifest::Parser
-    include DeployManifest::Validations
-    include DeployManifest::Helpers
+    include DeployConfig::Parser
+    include DeployConfig::Validations
+    include DeployConfig::Helpers
 
     attr_reader :app
     attr_reader :app_type

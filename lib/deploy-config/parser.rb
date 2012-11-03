@@ -12,20 +12,20 @@ module DeployConfig
     def parse_application(data)
       app = Hashr.new(data)
 
-      raise DeployManifest::Error, "App name required"   if !app.name?
-      raise DeployManifest::Error, "App type required"   if !app.type?
-      raise DeployManifest::Error, "App source required" if !app.git?
+      raise DeployConfig::Error, "App name required"   if !app.name?
+      raise DeployConfig::Error, "App type required"   if !app.type?
+      raise DeployConfig::Error, "App source required" if !app.git?
 
       if !valid_app_name?(app.name)
-        raise DeployManifest::Error, "App name is not valid"
+        raise DeployConfig::Error, "App name is not valid"
       end
 
       if !valid_app_type?(app.type)
-        raise DeployManifest::Error, "App type is invalid"
+        raise DeployConfig::Error, "App type is invalid"
       end
 
       if !valid_git_url?(app.git)
-        raise DeployManifest::Error, "App source is invalid"
+        raise DeployConfig::Error, "App source is invalid"
       end
 
       @app      = app.name
@@ -36,20 +36,20 @@ module DeployConfig
     def parse_targets(data)
       if data.kind_of?(Hash)
         data.each_pair do |k,v|
-          raise DeployManifest::Error, "Target #{k} is invalid" if !v.kind_of?(Hash)
-          raise DeployManifest::Error, "Target #{k} is missing attributes" if !v.keys.include_all?(TARGET_FIELDS)
+          raise DeployConfig::Error, "Target #{k} is invalid" if !v.kind_of?(Hash)
+          raise DeployConfig::Error, "Target #{k} is missing attributes" if !v.keys.include_all?(TARGET_FIELDS)
 
           v.delete_if { |k,v| !TARGET_FIELDS.include?(k) }
-          @targets[k] = DeployManifest::Target.new(k.to_s, v)
+          @targets[k] = DeployConfig::Target.new(k.to_s, v)
         end
       else
-        raise DeployManifest::Error, "Targets section is invalid"
+        raise DeployConfig::Error, "Targets section is invalid"
       end
     end
 
     def parse_hooks(data)
       unless data.kind_of?(Hash)
-        raise DeployManifest::Error, "Hooks section is invalid"
+        raise DeployConfig::Error, "Hooks section is invalid"
       end
       data.delete_if { |k,v| HOOKS_FIELDS.include?(k) }
       @hooks = data
