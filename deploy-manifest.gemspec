@@ -1,11 +1,11 @@
-require File.expand_path('../lib/deploy-manifest/version', __FILE__)
+require File.expand_path('../lib/deploy-config/version', __FILE__)
 
 Gem::Specification.new do |s|
-  s.name        = "deploy-manifest"
-  s.version     = DeployManifest::VERSION
-  s.summary     = "Deployment manifest"
-  s.description = "Deployment manifest"
-  s.homepage    = "http://github.com/sosedoff/deploy-manifest"
+  s.name        = "deploy-config"
+  s.version     = DeployConfig::VERSION
+  s.summary     = "Deployment config"
+  s.description = "Deployment config"
+  s.homepage    = "http://github.com/sosedoff/deploy-config"
   s.authors     = ["Dan Sosedoff"]
   s.email       = ["dan.sosedoff@gmail.com"]
   

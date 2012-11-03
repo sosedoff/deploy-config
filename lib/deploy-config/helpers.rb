@@ -1,4 +1,4 @@
-module DeployManifest
+module DeployConfig
   module Helpers
     # Generate a release string
     # @return [String]

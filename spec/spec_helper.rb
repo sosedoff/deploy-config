@@ -1,6 +1,6 @@
 $:.unshift File.expand_path("../..", __FILE__)
 
-require 'lib/deploy-manifest'
+require 'lib/deploy-config'
 
 def fixture_path(filename=nil)
   path = File.expand_path("../fixtures", __FILE__)

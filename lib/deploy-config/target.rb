@@ -1,4 +1,4 @@
-module DeployManifest
+module DeployConfig
   class Target
     attr_reader :name
     attr_reader :host, :port

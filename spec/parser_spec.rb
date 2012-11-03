@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 class Tester
-  include DeployManifest::Parser
-  include DeployManifest::Validations
+  include DeployConfig::Parser
+  include DeployConfig::Validations
 end
 
-describe DeployManifest::Parser do
+describe DeployConfig::Parser do
   let(:tester) { Tester.new }
 
   it 'parses application configuration' do

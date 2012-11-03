@@ -1,4 +1,4 @@
-module DeployManifest
+module DeployConfig
   module Validations
     extend self
 

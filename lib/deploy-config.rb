@@ -2,17 +2,17 @@ require 'rubygems'
 require 'yaml'
 require 'hashr'
 
-require 'deploy-manifest/core_ext/array'
-require 'deploy-manifest/core_ext/hash'
-require 'deploy-manifest/version'
-require 'deploy-manifest/errors'
-require 'deploy-manifest/helpers'
-require 'deploy-manifest/validations'
-require 'deploy-manifest/parser'
-require 'deploy-manifest/target'
-require 'deploy-manifest/manifest'
+require 'deploy-config/core_ext/array'
+require 'deploy-config/core_ext/hash'
+require 'deploy-config/version'
+require 'deploy-config/errors'
+require 'deploy-config/helpers'
+require 'deploy-config/validations'
+require 'deploy-config/parser'
+require 'deploy-config/target'
+require 'deploy-config/manifest'
 
-module DeployManifest
+module DeployConfig
   class << self
     # Load manifest from file
     # @param path [String] source filename

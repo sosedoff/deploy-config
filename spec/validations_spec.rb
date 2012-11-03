@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 class Validator
-  include DeployManifest::Validations
+  include DeployConfig::Validations
 end
 
-describe DeployManifest::Validations do
+describe DeployConfig::Validations do
   let(:tester) { Validator.new }
 
   it { should respond_to :valid_app_name? }

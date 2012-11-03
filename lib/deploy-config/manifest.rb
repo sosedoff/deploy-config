@@ -1,4 +1,4 @@
-module DeployManifest
+module DeployConfig
   class Manifest
     include DeployManifest::Parser
     include DeployManifest::Validations

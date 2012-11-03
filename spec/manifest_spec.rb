@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe DeployManifest::Manifest do
+describe DeployConfig::Manifest do
   it { should respond_to :app }
   it { should respond_to :app_type }
   it { should respond_to :git }

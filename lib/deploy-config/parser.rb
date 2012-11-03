@@ -1,4 +1,4 @@
-module DeployManifest
+module DeployConfig
   module Parser
     PRIMARY_FIELDS = [:app, :targets, :hooks, :setup]
     TARGET_FIELDS  = [:host, :user, :password, :deploy_to]
