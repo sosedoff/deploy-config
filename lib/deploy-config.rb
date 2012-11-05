@@ -25,7 +25,7 @@ module DeployConfig
         raise ArgumentError, "File does not exist"
       end
 
-      if !%w(json yml xml).include?(ext)
+      if !%w(json yml).include?(ext)
         raise ArgumentError, "Invalid file format"
       end
 
@@ -48,14 +48,6 @@ module DeployConfig
     def from_json(data)
       # TODO: Impement JSON loader
       raise RuntimeErrorm "JSON loader is not implemented"
-    end
-
-    # Parse manifest from xml data
-    # @param data [String] source string
-    # @return [Manifest] manifest instance
-    def from_xml(data)
-      # TODO: Implement XML loader
-      raise RuntimeErrorm, "XML loader is not implemented"
     end
   end
 end
