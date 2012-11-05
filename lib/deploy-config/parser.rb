@@ -29,7 +29,7 @@ module DeployConfig
       end
 
       @app      = app.name
-      @app_type = app.app_type
+      @app_type = app.type
       @git      = app.git
     end
 
