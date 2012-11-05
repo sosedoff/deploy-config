@@ -40,6 +40,8 @@ module DeployConfig
       Manifest.new(YAML.load(data))
     end
 
+    alias :from_yaml :from_yml
+
     # Parse manifest from json data
     # @param data [String] source string
     # @return [Manifest] manifest instance
