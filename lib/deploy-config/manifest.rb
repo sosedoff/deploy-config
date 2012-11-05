@@ -24,7 +24,10 @@ module DeployConfig
     def parse!
       parse_application(original_data.app)
       parse_targets(original_data.targets)
-      parse_hooks(original_data.hooks)
+
+      if original_data.hooks
+        parse_hooks(original_data.hooks)
+      end
     end
   end
 end
