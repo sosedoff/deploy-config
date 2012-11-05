@@ -34,6 +34,8 @@ describe DeployConfig::Validations do
   it 'validates git source url' do
     tester.valid_git_url?('git@hostname.com:repo.git').should be_true
     tester.valid_git_url?('git@github.com:user/repo.git').should be_true
+    tester.valid_git_url?('git://hostname.com/repo.git').should be_true
+    tester.valid_git_url?('http://hostname.com/repo.git').should be_true
     tester.valid_git_url?('git@hostname.com:repo').should be_false
     tester.valid_git_url?('hostname.com:repo.git').should be_false
   end
