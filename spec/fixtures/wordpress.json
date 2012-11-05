@@ -1,0 +1,42 @@
+{
+  "app": {
+    "name": "app",
+    "type": "wordpress",
+    "git": "git@hostname.com:app.git"
+  },
+  "targets": {
+    "staging": {
+      "host": "staging.domain.com",
+      "user": "user",
+      "password": "password",
+      "deploy_to": "/home/app/name"
+    },
+    "production": {
+      "host": "production.domain.com",
+      "user": "user",
+      "password": "password",
+      "deploy_to": "/home/app/name"
+    }
+  },
+  "environment": {
+    "global": {
+      "ENV_NAME": "env value"
+    }
+  },
+  "configuration": {
+    "deploy": "install_theme",
+    "theme": "theme_name",
+    "blog_url": "http://foo.wordpress.com",
+    "blog_title": "Title",
+    "admin_email": "admin@email.com",
+    "admin_password": "password",
+    "plugins": ["plugin_slug1", "plugin_slug2"]
+  },
+  "setup": ["cmd1", "cmd2", "cmd3"],
+  "hooks": {
+    "before_deploy": ["cmd1", "cmd2"],
+    "before_code_update": ["cmd"],
+    "after_code_update": ["cmd"],
+    "after_deploy": ["cmd1", "cmd2"]
+  }
+}
