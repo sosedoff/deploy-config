@@ -25,7 +25,7 @@ module DeployConfig
         raise ArgumentError, "File does not exist"
       end
 
-      if !%w(json yml).include?(ext)
+      if !%w(json yml yaml).include?(ext)
         raise ArgumentError, "Invalid file format"
       end
 
