@@ -13,14 +13,14 @@ module DeployConfig
       app = Hashr.new(data)
 
       raise DeployConfig::Error, "App name required"   if !app.name?
-      raise DeployConfig::Error, "App type required"   if !app.type?
+      raise DeployConfig::Error, "App type required"   if !app.deploy?
       raise DeployConfig::Error, "App source required" if !app.git?
 
       if !valid_app_name?(app.name)
         raise DeployConfig::Error, "App name is not valid"
       end
 
-      if !valid_app_type?(app.type)
+      if !valid_app_type?(app.deploy)
         raise DeployConfig::Error, "App type is invalid"
       end
 
@@ -29,7 +29,7 @@ module DeployConfig
       end
 
       @app      = app.name
-      @app_type = app.type
+      @app_type = app.deploy
       @git      = app.git
     end
 

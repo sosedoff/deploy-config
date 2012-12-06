@@ -1,6 +1,6 @@
 app:
   name: app
-  type: wordpress
+  deploy: wordpress
   git: git@hostname.com:app.git
 
 targets:
